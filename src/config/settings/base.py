@@ -26,6 +26,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+THIRD_PARTY_APPS = [
+    "rest_framework",
+    "corsheaders",
+    "django_extensions",
+    'django_filters',
+    'drf_yasg',
+]
+LOCAL_APPS = [
+]
+INSTALLED_APPS += THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
