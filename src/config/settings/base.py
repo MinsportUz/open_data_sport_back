@@ -37,6 +37,9 @@ THIRD_PARTY_APPS = [
     'drf_yasg',
 ]
 LOCAL_APPS = [
+    'app',
+    'utils',
+    'sport',
 ]
 INSTALLED_APPS += THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -124,6 +127,7 @@ MODELTRANSLATION_FALLBACK_LANGUAGES = ('oz', 'uz', 'en', 'ru')
 MODELTRANSLATION_TRANSLATION_FILES = (
     'app.translation.translate',
     'utils.translation.translate',
+    'sport.translation.translate',
 )
 
 TIME_ZONE = 'UTC'
