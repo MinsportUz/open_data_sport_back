@@ -23,7 +23,7 @@ class SportData(models.Model):
     published_at = models.DateTimeField(verbose_name=_('chop etilgan vaqti'), null=True, blank=True)
 
     state = models.ForeignKey(State, on_delete=models.SET_NULL, verbose_name=_('holati'), null=True)
-    sport_type = models.ForeignKey(SportType, on_delete=models.SET_NULL, verbose_name=_('sport turi'),null=True)
+    sport_type = models.ForeignKey(SportType, on_delete=models.SET_NULL, verbose_name=_('sport turi'), null=True)
 
     def __str__(self):
         return self.title

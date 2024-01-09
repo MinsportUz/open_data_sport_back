@@ -11,6 +11,8 @@ class SportType(models.Model):
     title = models.CharField(max_length=255, verbose_name=_("To'liq nomi [title]"))
     attr = models.CharField(max_length=255, verbose_name=_('qisqa nomi [attr]'))
 
+    icon = models.ImageField(upload_to='icons/', verbose_name=_('icon'), null=True, blank=True)
+
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('yaratilgan vaqti'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('tahrirlangan vaqti'))
 
