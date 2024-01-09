@@ -1,6 +1,7 @@
 from pathlib import Path
 from decouple import config
 import os
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -9,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-qex1x9iuui3$^q7zg^5q)so)2eymzc*if$!&xs-*r-b_268nkl'
+SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -99,6 +100,27 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
+
+gettext = lambda s: s
+
+LANGUAGES = (
+    ('oz', gettext("O'zbek")),
+    ('uz', gettext('Ўзбек тили')),
+    ('en', gettext('English')),
+    ('ru', gettext('Russian')),
+)
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
+
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'uz'
+MODELTRANSLATION_LANGUAGES = ('oz', 'uz', 'en', 'ru')
+MODELTRANSLATION_FALLBACK_LANGUAGES = ('oz', 'uz', 'en', 'ru')
+
+MODELTRANSLATION_TRANSLATION_FILES = (
+    'app.translation.translate',
+    'utils.translation.translate',
+)
 
 TIME_ZONE = 'UTC'
 
