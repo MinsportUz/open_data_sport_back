@@ -14,7 +14,7 @@ class SportType(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('yaratilgan vaqti'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('tahrirlangan vaqti'))
 
-    state = models.ForeignKey(State, on_delete=models.CASCADE, verbose_name=_('holati'))
+    state = models.ForeignKey(State, on_delete=models.SET_NULL, verbose_name=_('holati'), null=True)
 
     def __str__(self):
         return self.title

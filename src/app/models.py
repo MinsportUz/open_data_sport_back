@@ -5,6 +5,7 @@ from django.utils import timezone
 from django.conf import settings
 
 from utils.models import State
+from sport.models import SportType
 
 
 class SportData(models.Model):
@@ -19,7 +20,10 @@ class SportData(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('yaratilgan vaqti'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('tahrirlangan vaqti'))
 
-    state = models.ForeignKey(State, on_delete=models.CASCADE, verbose_name=_('holati'))
+    published_at = models.DateTimeField(verbose_name=_('chop etilgan vaqti'), null=True, blank=True)
+
+    state = models.ForeignKey(State, on_delete=models.SET_NULL, verbose_name=_('holati'), null=True)
+    sport_type = models.ForeignKey(SportType, on_delete=models.SET_NULL, verbose_name=_('sport turi'),null=True)
 
     def __str__(self):
         return self.title
