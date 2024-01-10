@@ -15,6 +15,7 @@ api.register(r'sport_type', sport_views.SportTypeView, basename='sport_type')
 
 # app urls
 api.register(r'sport_data', app_views.SportDataView, basename='sport_data')
+api.register(r'legislative_document', app_views.LegislativeDocumentView, basename='legislative_document')
 
 urlpatterns = [
     path('', include(api.urls)),

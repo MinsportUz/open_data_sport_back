@@ -20,6 +20,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -197,7 +198,7 @@ CORS_ALLOW_HEADERS = [
     'Access-Control-Allow-Headers',
     'Access-Control-Allow-Credentials',
 ]
-HOST = 'https://2e0e-194-93-24-3.ngrok-free.app'
+HOST = 'http://172.17.17.68:7000'
 SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False
 CSRF_TRUSTED_ORIGINS = [HOST]

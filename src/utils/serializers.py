@@ -5,4 +5,4 @@ from .models import State
 class StateSerializer(serializers.ModelSerializer):
     class Meta:
         model = State
-        fields = "__all__"
+        fields = ('id', 'title', 'attr',)

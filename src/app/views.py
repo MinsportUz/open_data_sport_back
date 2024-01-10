@@ -27,5 +27,13 @@ class SportDataView(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend,)
     filterset_fields = ('sport_type', 'created_at',)
 
-    # def retrieve(self, request, *args, **kwargs):
-    #     return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+
+class LegislativeDocumentView(viewsets.ModelViewSet):
+    """The class is responsible for LegislativeDocument CRUD functionality"""
+    queryset = models.LegislativeDocument.objects.all()
+    serializer_class = serializers.LegislativeDocumentSerializers
+    http_method_names = ['get', ]
+    pagination_class = TenPagination
+    filter_backends = (DjangoFilterBackend,)
+    filterset_fields = ('created_at',)
