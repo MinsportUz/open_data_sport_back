@@ -12,7 +12,9 @@ from .models import SportData, LegislativeDocument
 class SportDataSerializers(serializers.ModelSerializer):
     class Meta:
         model = SportData
-        fields = ('id', 'title', 'attr', 'url', 'file', 'views', 'published_at', 'state', 'sport_type')
+        fields = (
+        'id', 'title', 'attr', 'url', 'file', 'views', 'published_at', 'state', 'sport_type', 'author', 'publisher',
+        'image', 'created_at')
         # depth = 1
 
 

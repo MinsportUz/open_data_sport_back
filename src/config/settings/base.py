@@ -189,16 +189,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_HEADERS = [
-    'Accept',
-    'Accept-Charset',
-    'Authorization',
-    'Content-Type',
-    'Access-Control-Allow-Origin',
-    'Access-Control-Allow-Methods',
-    'Access-Control-Allow-Headers',
-    'Access-Control-Allow-Credentials',
+    # 'Accept',
+    # 'Accept-Charset',
+    # 'Authorization',
+    # 'Content-Type',
+    # 'Access-Control-Allow-Origin',
+    # 'Access-Control-Allow-Methods',
+    # 'Access-Control-Allow-Headers',
+    # 'Access-Control-Allow-Credentials',
+    '*'
 ]
-HOST = 'http://172.17.17.68:7000'
+HOST = 'http://172.17.17.68:8000'
+
 SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False
 CSRF_TRUSTED_ORIGINS = [HOST]

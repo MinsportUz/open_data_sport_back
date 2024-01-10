@@ -8,6 +8,7 @@ from rest_framework.decorators import action
 
 from . import models
 from . import serializers
+from .filter.filter import SportDataFilterBackend
 
 from utils.pagination import TenPagination
 from utils.models import State
@@ -73,3 +74,13 @@ class DataFilterView(viewsets.ModelViewSet):
 
     def retrieve(self, request, *args, **kwargs):
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+
+class SearchDataView(viewsets.ModelViewSet):
+    """The class is responsible for SportData CRUD functionality"""
+    queryset = models.SportData.objects.all()
+    serializer_class = serializers.SportDataSerializers
+    http_method_names = ['get', ]
+    pagination_class = TenPagination
+    filter_backends = (DjangoFilterBackend, SportDataFilterBackend,)
+    filterset_fields = ('sport_type', 'author', 'title',)

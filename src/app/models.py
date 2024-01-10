@@ -20,7 +20,11 @@ class SportData(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Yaratilgan vaqti'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Tahrirlangan vaqti'))
 
-    published_at = models.DateTimeField(verbose_name=_('Chop etilgan vaqti'), null=True, blank=True)
+    image = models.ImageField(upload_to='images/', verbose_name=_('Rasm'), null=True, blank=True)
+    author = models.CharField(max_length=255, verbose_name=_('Muallif'), null=True, blank=True)
+    published_at = models.DateField(verbose_name=_('Chop etilgan vaqti'), null=True, blank=True)
+    publisher = models.CharField(max_length=255, verbose_name=_('Nashriyot'), null=True, blank=True)
+
 
     state = models.ForeignKey(State, on_delete=models.SET_NULL, verbose_name=_('Holati'), null=True)
     sport_type = models.ForeignKey(SportType, on_delete=models.SET_NULL, verbose_name=_('Sport turi'), null=True)
@@ -37,6 +41,9 @@ class SportData(models.Model):
 
     def get_file_url(self):
         return settings.HOST + self.file.url
+
+    def get_image_url(self):
+        return settings.HOST + self.image.url
 
     def get_file_name(self):
         return self.file.name.split('/')[-1]
