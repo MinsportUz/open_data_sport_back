@@ -5,6 +5,7 @@ from django.utils.translation import get_language
 class SportDataFilterBackend(filters.BaseFilterBackend):
     def filter_queryset(self, request, queryset, view):
         title = request.query_params.get('title', None)
+        author = request.query_params.get('author', None)
         language = get_language()
         if title is None:
             return queryset
@@ -14,4 +15,6 @@ class SportDataFilterBackend(filters.BaseFilterBackend):
             queryset = queryset.filter(title_en__icontains=title)
         else:
             queryset = queryset.filter(title_uz__icontains=title)
+        if author is not None:
+            queryset = queryset.filter(author__icontains=author)
         return queryset

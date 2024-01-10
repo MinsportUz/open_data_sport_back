@@ -82,5 +82,7 @@ class SearchDataView(viewsets.ModelViewSet):
     serializer_class = serializers.SportDataSerializers
     http_method_names = ['get', ]
     pagination_class = TenPagination
-    filter_backends = (DjangoFilterBackend, SportDataFilterBackend,)
+    filter_backends = (SportDataFilterBackend, )
     filterset_fields = ('sport_type', 'author', 'title',)
+
+
