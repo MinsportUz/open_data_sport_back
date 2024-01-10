@@ -204,3 +204,9 @@ CSRF_COOKIE_SECURE = False
 CSRF_TRUSTED_ORIGINS = [HOST]
 
 AXES_LOCKOUT_URL = HOST + '/en/lockout/'
+
+try:
+    from .local_settings import *
+    from .jazzmin import JAZZMIN_SETTINGS
+except ImportError:
+    pass

@@ -8,7 +8,7 @@ from rest_framework_simplejwt.authentication import JWTAuthentication  # Import 
 schema_view = get_schema_view(
     openapi.Info(
         title="Data Sport Uz Api",
-        default_version='v2',
+        default_version='v1',
         description="Data Sport Uz Api documentations",
         terms_of_service="https://www.google.com/policies/terms/",
         contact=openapi.Contact(email="haydarovakbar640@gmail.com"),
