@@ -25,7 +25,6 @@ class SportData(models.Model):
     published_at = models.DateField(verbose_name=_('Chop etilgan vaqti'), null=True, blank=True)
     publisher = models.CharField(max_length=255, verbose_name=_('Nashriyot'), null=True, blank=True)
 
-
     state = models.ForeignKey(State, on_delete=models.SET_NULL, verbose_name=_('Holati'), null=True)
     sport_type = models.ForeignKey(SportType, on_delete=models.SET_NULL, verbose_name=_('Sport turi'), null=True)
 

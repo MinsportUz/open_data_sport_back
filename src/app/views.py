@@ -4,11 +4,12 @@ from rest_framework.response import Response
 from django.conf import settings
 from django_filters.rest_framework import DjangoFilterBackend
 from django.db.models import Sum
-from rest_framework.decorators import action
+from drf_yasg.utils import swagger_auto_schema
 
 from . import models
 from . import serializers
 from .filter.filter import SportDataFilterBackend
+from .params import params
 
 from utils.pagination import TenPagination
 from utils.models import State
@@ -83,6 +84,9 @@ class SearchDataView(viewsets.ModelViewSet):
     http_method_names = ['get', ]
     pagination_class = TenPagination
     filter_backends = (SportDataFilterBackend, )
-    filterset_fields = ('sport_type', 'author', 'title',)
+    filterset_fields = ('author', 'title',)
 
-
+    @swagger_auto_schema(manual_parameters=params, responses={200: 'OK'},
+                         operation_id='filter by author and title')
+    def list(self, request, *args, **kwargs):
+        return super(SearchDataView, self).list(request, *args, **kwargs)
