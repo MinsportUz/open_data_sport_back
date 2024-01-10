@@ -28,7 +28,6 @@ class SportDataView(viewsets.ModelViewSet):
     filterset_fields = ('sport_type', 'created_at',)
 
 
-
 class LegislativeDocumentView(viewsets.ModelViewSet):
     """The class is responsible for LegislativeDocument CRUD functionality"""
     queryset = models.LegislativeDocument.objects.all()
