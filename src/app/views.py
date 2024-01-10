@@ -62,12 +62,12 @@ class DataFilterView(viewsets.ModelViewSet):
         queryset = self.filter_queryset(self.get_queryset())
         document_count = queryset.count()
         legislative_count = models.LegislativeDocument.objects.all().count()
-        views_count = queryset.aggregate(total_views=Sum('views'))
+        total_views = queryset.aggregate(total_views=Sum('views'))['total_views']
         sport_type_count = SportType.objects.filter(state=State.objects.first()).count()
         return Response({
             'document_count': document_count,
             'legislative_count': legislative_count,
-            'views_count': views_count,
+            'total_views': total_views,
             'sport_type_count': sport_type_count,
         }, status=status.HTTP_200_OK)
 
