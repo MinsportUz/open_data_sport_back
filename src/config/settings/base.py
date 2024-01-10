@@ -20,8 +20,8 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'jazzmin',
     'modeltranslation',
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -206,7 +206,6 @@ CSRF_TRUSTED_ORIGINS = [HOST]
 AXES_LOCKOUT_URL = HOST + '/en/lockout/'
 
 try:
-    from .local_settings import *
-    from .jazzmin import JAZZMIN_SETTINGS
+    from .jazzmin import JAZZMIN_SETTINGS, JAZZMIN_UI_TWEAKS
 except ImportError:
-    pass
+    print('local_settings.py not found')
