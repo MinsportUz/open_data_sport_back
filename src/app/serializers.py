@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import SportData, LegislativeDocument, About
+from .models import SportData, LegislativeDocument, About, Footer
 from .youtube import youtube_video_stats
 
 
@@ -46,3 +46,9 @@ class AboutSerializers(serializers.ModelSerializer):
         representation = super().to_representation(instance)
         representation['image'] = instance.get_image_url()
         return representation
+
+
+class FooterSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Footer
+        fields = '__all__'

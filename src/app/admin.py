@@ -1,7 +1,7 @@
 from django.contrib import admin
 from modeltranslation.admin import TranslationAdmin
 
-from .models import SportData, LegislativeDocument, About
+from .models import SportData, LegislativeDocument, About, Footer
 
 admin.site.site_header = 'Data Sport Admin panel'
 admin.site.site_title = 'Data Sport  Admin panel'
@@ -65,3 +65,4 @@ class AboutAdmin(TranslationAdmin):
 admin.site.register(SportData, SportDataAdmin)
 admin.site.register(LegislativeDocument, LegislativeDocumentAdmin)
 admin.site.register(About, AboutAdmin)
+admin.site.register(Footer)

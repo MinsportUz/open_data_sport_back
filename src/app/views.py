@@ -131,3 +131,13 @@ class AboutView(viewsets.ModelViewSet):
 
     def retrieve(self, request, *args, **kwargs):
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+
+class FooterView(viewsets.ModelViewSet):
+    """The class is responsible for Footer CRUD functionality"""
+    queryset = models.Footer.objects.filter(state=State.objects.first())
+    serializer_class = serializers.FooterSerializers
+    http_method_names = ['get', ]
+
+    def retrieve(self, request, *args, **kwargs):
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)

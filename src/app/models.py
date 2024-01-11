@@ -127,3 +127,35 @@ class About(models.Model):
         verbose_name = _('Tizim haqida')
         verbose_name_plural = _('Tizim haqida')
         db_table = 'about'
+
+
+class Footer(models.Model):
+    email = models.EmailField(verbose_name=_('Email'))
+    phone = models.CharField(max_length=255, verbose_name=_('Telefon raqamlar'))
+    address = models.CharField(max_length=255, verbose_name=_('Manzil'))
+    logo = models.ImageField(upload_to='images/', verbose_name=_('Logo'), null=True, blank=True)
+    facebook = models.URLField(verbose_name=_('Facebook manzili'), null=True, blank=True)
+    instagram = models.URLField(verbose_name=_('Instagram manzili'), null=True, blank=True)
+    telegram = models.URLField(verbose_name=_('Telegram manzili'), null=True, blank=True)
+    youtube = models.URLField(verbose_name=_('Youtube manzili'), null=True, blank=True)
+
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Yaratilgan vaqti'))
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Tahrirlangan vaqti'))
+
+    state = models.ForeignKey(State, on_delete=models.SET_NULL, verbose_name=_('Holati'), null=True)
+
+    def __str__(self):
+        return self.email
+
+    def get_logo_url(self):
+        return settings.HOST + self.logo.url
+
+    def save(self, *args, **kwargs):
+        self.updated_at = timezone.now()
+        super(Footer, self).save(*args, **kwargs)
+        return self
+
+    class Meta:
+        verbose_name = _('Footer [saytni pastgi qismi]')
+        verbose_name_plural = _('Footer [saytni pastgi qismi]')
+        db_table = 'footer'
