@@ -90,3 +90,19 @@ class SearchDataView(viewsets.ModelViewSet):
                          operation_id='filter by author and title')
     def list(self, request, *args, **kwargs):
         return super(SearchDataView, self).list(request, *args, **kwargs)
+
+
+class GetDataFilterByviewsView(viewsets.ModelViewSet):
+    """The class is responsible for SportData CRUD functionality"""
+    queryset = models.SportData.objects.all().order_by('views')
+    serializer_class = serializers.SportDataSerializers
+    http_method_names = ['get', ]
+    pagination_class = TenPagination
+    filter_backends = (DjangoFilterBackend,)
+    filterset_fields = ('sport_type',)
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        instance.increase_views()
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
