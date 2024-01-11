@@ -56,7 +56,6 @@ class DataFilterView(viewsets.ModelViewSet):
     queryset = models.SportData.objects.filter(state=State.objects.first())
     serializer_class = serializers.SportDataSerializers
     http_method_names = ['get', ]
-    # pagination_class = TenPagination
     filter_backends = (DjangoFilterBackend,)
     filterset_fields = ('sport_type', 'created_at',)
 
@@ -65,11 +64,15 @@ class DataFilterView(viewsets.ModelViewSet):
         document_count = queryset.count()
         legislative_count = models.LegislativeDocument.objects.all().count()
         total_views = queryset.aggregate(total_views=Sum('views'))['total_views']
+        youtube_data = serializers.YoutubeViewsSerializers(queryset, many=True).data
+        youtube_views = sum([i['youtube_views'] for i in youtube_data])
         sport_type_count = SportType.objects.filter(state=State.objects.first()).count()
         return Response({
             'document_count': document_count,
             'legislative_count': legislative_count,
-            'total_views': total_views,
+            'files_views': total_views,
+            'youtube_views': youtube_views,
+            'total_views': total_views + youtube_views,
             'sport_type_count': sport_type_count,
         }, status=status.HTTP_200_OK)
 
@@ -83,7 +86,7 @@ class SearchDataView(viewsets.ModelViewSet):
     serializer_class = serializers.SportDataSerializers
     http_method_names = ['get', ]
     pagination_class = TenPagination
-    filter_backends = (SportDataFilterBackend, )
+    filter_backends = (SportDataFilterBackend,)
     filterset_fields = ('author', 'title',)
 
     @swagger_auto_schema(manual_parameters=params, responses={200: 'OK'},
@@ -94,12 +97,23 @@ class SearchDataView(viewsets.ModelViewSet):
 
 class GetDataFilterByviewsView(viewsets.ModelViewSet):
     """The class is responsible for SportData CRUD functionality"""
-    queryset = models.SportData.objects.filter(state=State.objects.first()).order_by('views')
+    queryset = models.SportData.objects.filter(state=State.objects.first()).order_by('-views')
     serializer_class = serializers.SportDataSerializers
     http_method_names = ['get', ]
     pagination_class = TenPagination
     filter_backends = (DjangoFilterBackend,)
     filterset_fields = ('sport_type',)
+
+    def list(self, request, *args, **kwargs):
+        sort = request.query_params.get('sort', None)
+        if sort == 'youtube':
+            queryset = self.filter_queryset(self.get_queryset())
+            youtube_data = serializers.SportDataSerializers(queryset, many=True).data
+            youtube_data = sorted(youtube_data, key=lambda x: x['youtube_views'], reverse=True)
+            page = self.paginate_queryset(youtube_data)
+            return Response(page, status=status.HTTP_200_OK)
+        else:
+            return super(GetDataFilterByviewsView, self).list(request, *args, **kwargs)
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()

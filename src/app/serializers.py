@@ -24,3 +24,14 @@ class LegislativeDocumentSerializers(serializers.ModelSerializer):
     class Meta:
         model = LegislativeDocument
         fields = ('id', 'title', 'attr', 'url')
+
+
+class YoutubeViewsSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = SportData
+        fields = ('url', 'views')
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation['youtube_views'] = youtube_video_stats(instance.url)
+        return representation
