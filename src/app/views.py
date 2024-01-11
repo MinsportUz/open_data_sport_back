@@ -111,7 +111,8 @@ class GetDataFilterByviewsView(viewsets.ModelViewSet):
             youtube_data = serializers.SportDataSerializers(queryset, many=True).data
             youtube_data = sorted(youtube_data, key=lambda x: x['youtube_views'], reverse=True)
             page = self.paginate_queryset(youtube_data)
-            return Response(page, status=status.HTTP_200_OK)
+            if page is not None:
+                return self.get_paginated_response(page)
         else:
             return super(GetDataFilterByviewsView, self).list(request, *args, **kwargs)
 
