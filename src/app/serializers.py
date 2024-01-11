@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from .models import SportData, LegislativeDocument
-from .youtube.view import youtube_video_stats
+from .youtube import youtube_video_stats
 
 
 class SportDataSerializers(serializers.ModelSerializer):
@@ -16,8 +16,7 @@ class SportDataSerializers(serializers.ModelSerializer):
         representation['file'] = instance.get_file_url()
         representation['image'] = instance.get_image_url()
         representation['language'] = instance.get_language_display()
-        youtube_url = instance.url
-        representation['youtube_views'] = youtube_video_stats(youtube_url)
+        representation['youtube_views'] = youtube_video_stats(instance.url)
         return representation
 
 

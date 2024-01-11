@@ -7,6 +7,5 @@ def youtube_video_stats(url):
             return 0
         video = yt(url)
         return video.views
-    except Exception as e:
-        print(e)
+    except Exception:
         return 0
