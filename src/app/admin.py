@@ -18,7 +18,7 @@ class SportDataAdmin(TranslationAdmin):
         ('Inglizcha', {'fields': ('title_en', 'attr_en',)}),
         ('Ruscha', {'fields': ('title_ru', 'attr_ru',)}),
         ('Youtube url', {'fields': ('url',)}),
-        ('file', {'fields': ('file',)}),
+        ('File', {'fields': ('file',)}),
         ('Rasm', {'fields': ('image',)}),
         ('Muallif', {'fields': ('author',)}),
         ('Nashriyot', {'fields': ('publisher',)}),
