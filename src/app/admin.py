@@ -25,6 +25,7 @@ class SportDataAdmin(TranslationAdmin):
         ('Chop etilgan vaqti', {'fields': ('published_at',)}),
         ('Holati', {'fields': ('state',)}),
         ('Sport turi', {'fields': ('sport_type',)}),
+        ('Tili', {'fields': ('language',)}),
     )
 
 

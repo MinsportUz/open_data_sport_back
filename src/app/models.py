@@ -7,6 +7,12 @@ from django.conf import settings
 from utils.models import State
 from sport.models import SportType
 
+Languages = (
+    ('uz', _('O\'zbek tili')),
+    ('en', _('English')),
+    ('ru', _('Russian')),
+)
+
 
 class SportData(models.Model):
     title = models.CharField(max_length=255, verbose_name=_("To'liq nomi [title]"))
@@ -25,6 +31,8 @@ class SportData(models.Model):
     published_at = models.DateField(verbose_name=_('Chop etilgan vaqti'), null=True, blank=True)
     publisher = models.CharField(max_length=255, verbose_name=_('Nashriyot'), null=True, blank=True)
 
+    language = models.CharField(max_length=2, choices=Languages, default=get_language, verbose_name=_('Til'), null=True, blank=True)
+
     state = models.ForeignKey(State, on_delete=models.SET_NULL, verbose_name=_('Holati'), null=True)
     sport_type = models.ForeignKey(SportType, on_delete=models.SET_NULL, verbose_name=_('Sport turi'), null=True)
 
@@ -34,7 +42,10 @@ class SportData(models.Model):
     def save(self, *args, **kwargs):
         self.updated_at = timezone.now()
         if self.url:
-            self.url = self.url.replace('watch?v=', 'embed/')
+            if 'watch?v=' in self.url:
+                self.url = self.url.replace('watch?v=', 'embed/')
+            elif 'youtu.be' in self.url:
+                self.url = self.url.replace('youtu.be', 'youtube.com/embed')
         super(SportData, self).save(*args, **kwargs)
         return self
 
@@ -46,6 +57,9 @@ class SportData(models.Model):
 
     def get_file_name(self):
         return self.file.name.split('/')[-1]
+
+    def get_language_display(self):
+        return dict(Languages)[self.language]
 
     def increase_views(self):
         self.views += 1
