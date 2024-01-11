@@ -27,6 +27,11 @@ class SportDataAdmin(TranslationAdmin):
         ('Sport turi', {'fields': ('sport_type',)}),
         ('Tili', {'fields': ('language',)}),
     )
+    _orig_was_required = {
+        'title_uz': True,
+        'title_en': True,
+        'title_ru': True,
+    }
 
 
 class LegislativeDocumentAdmin(TranslationAdmin):
