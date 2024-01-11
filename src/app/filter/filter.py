@@ -1,20 +1,19 @@
 from rest_framework import filters
 from django.utils.translation import get_language
 
+from django.db.models import Q
+
 
 class SportDataFilterBackend(filters.BaseFilterBackend):
     def filter_queryset(self, request, queryset, view):
-        title = request.query_params.get('title', None)
-        author = request.query_params.get('author', None)
+        search = request.query_params.get('search', None)
         language = get_language()
-        if title is None:
+        if search is None:
             return queryset
         if language == 'ru':
-            queryset = queryset.filter(title_ru__icontains=title)
+            queryset = queryset.filter(Q(title_ru__icontains=search) | Q(attr_ru__icontains=search) | Q(author__icontains=search))
         elif language == 'en':
-            queryset = queryset.filter(title_en__icontains=title)
+            queryset = queryset.filter(Q(title_en__icontains=search) | Q(attr_en__icontains=search) | Q(author__icontains=search))
         else:
-            queryset = queryset.filter(title_uz__icontains=title)
-        if author is not None:
-            queryset = queryset.filter(author__icontains=author)
+            queryset = queryset.filter(Q(title_uz__icontains=search) | Q(attr_uz__icontains=search) | Q(author__icontains=search))
         return queryset
