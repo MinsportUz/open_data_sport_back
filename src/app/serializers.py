@@ -21,4 +21,4 @@ class SportDataSerializers(serializers.ModelSerializer):
 class LegislativeDocumentSerializers(serializers.ModelSerializer):
     class Meta:
         model = LegislativeDocument
-        fields = ('id', 'title', 'attr', 'url', 'state')
+        fields = ('id', 'title', 'attr', 'url')

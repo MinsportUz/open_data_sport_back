@@ -56,6 +56,9 @@ class SportData(models.Model):
         verbose_name = _('Sport ma\'lumotlari')
         verbose_name_plural = _('Sport ma\'lumotlari')
         db_table = 'sport_data'
+        indexes = [
+            models.Index(fields=['sport_type', 'state', 'created_at']),
+        ]
 
 
 class LegislativeDocument(models.Model):

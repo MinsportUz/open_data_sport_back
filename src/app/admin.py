@@ -38,6 +38,7 @@ class LegislativeDocumentAdmin(TranslationAdmin):
         ('Inglizcha', {'fields': ('title_en', 'attr_en',)}),
         ('Ruscha', {'fields': ('title_ru', 'attr_ru',)}),
         ('Lex url', {'fields': ('url',)}),
+        ('Xolati', {'fields': ('state',)}),
     )
 
 

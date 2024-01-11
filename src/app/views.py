@@ -27,7 +27,7 @@ def lockout_view(request):
 
 class SportDataView(viewsets.ModelViewSet):
     """The class is responsible for SportData CRUD functionality"""
-    queryset = models.SportData.objects.all()
+    queryset = models.SportData.objects.filter(state=State.objects.first())
     serializer_class = serializers.SportDataSerializers
     http_method_names = ['get', ]
     pagination_class = TenPagination
@@ -43,7 +43,7 @@ class SportDataView(viewsets.ModelViewSet):
 
 class LegislativeDocumentView(viewsets.ModelViewSet):
     """The class is responsible for LegislativeDocument CRUD functionality"""
-    queryset = models.LegislativeDocument.objects.all()
+    queryset = models.LegislativeDocument.objects.filter(state=State.objects.first())
     serializer_class = serializers.LegislativeDocumentSerializers
     http_method_names = ['get', ]
     pagination_class = TenPagination
@@ -53,7 +53,7 @@ class LegislativeDocumentView(viewsets.ModelViewSet):
 
 class DataFilterView(viewsets.ModelViewSet):
     """The class is responsible for SportData CRUD functionality"""
-    queryset = models.SportData.objects.all()
+    queryset = models.SportData.objects.filter(state=State.objects.first())
     serializer_class = serializers.SportDataSerializers
     http_method_names = ['get', ]
     # pagination_class = TenPagination
@@ -79,7 +79,7 @@ class DataFilterView(viewsets.ModelViewSet):
 
 class SearchDataView(viewsets.ModelViewSet):
     """The class is responsible for SportData CRUD functionality"""
-    queryset = models.SportData.objects.all()
+    queryset = models.SportData.objects.filter(state=State.objects.first())
     serializer_class = serializers.SportDataSerializers
     http_method_names = ['get', ]
     pagination_class = TenPagination
@@ -94,7 +94,7 @@ class SearchDataView(viewsets.ModelViewSet):
 
 class GetDataFilterByviewsView(viewsets.ModelViewSet):
     """The class is responsible for SportData CRUD functionality"""
-    queryset = models.SportData.objects.all().order_by('views')
+    queryset = models.SportData.objects.filter(state=State.objects.first()).order_by('views')
     serializer_class = serializers.SportDataSerializers
     http_method_names = ['get', ]
     pagination_class = TenPagination
