@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import SportData, LegislativeDocument
+from .models import SportData, LegislativeDocument, About
 from .youtube import youtube_video_stats
 
 
@@ -34,4 +34,15 @@ class YoutubeViewsSerializers(serializers.ModelSerializer):
     def to_representation(self, instance):
         representation = super().to_representation(instance)
         representation['youtube_views'] = youtube_video_stats(instance.url)
+        return representation
+
+
+class AboutSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = About
+        fields = ('id', 'title', 'content', 'image', 'state')
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation['image'] = instance.get_image_url()
         return representation

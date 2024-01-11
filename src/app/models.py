@@ -31,7 +31,8 @@ class SportData(models.Model):
     published_at = models.DateField(verbose_name=_('Chop etilgan vaqti'), null=True, blank=True)
     publisher = models.CharField(max_length=255, verbose_name=_('Nashriyot'), null=True, blank=True)
 
-    language = models.CharField(max_length=2, choices=Languages, default=get_language, verbose_name=_('Til'), null=True, blank=True)
+    language = models.CharField(max_length=2, choices=Languages, default=get_language, verbose_name=_('Til'), null=True,
+                                blank=True)
 
     state = models.ForeignKey(State, on_delete=models.SET_NULL, verbose_name=_('Holati'), null=True)
     sport_type = models.ForeignKey(SportType, on_delete=models.SET_NULL, verbose_name=_('Sport turi'), null=True)
@@ -98,3 +99,31 @@ class LegislativeDocument(models.Model):
         verbose_name = _('Qonun hujjatlari')
         verbose_name_plural = _('Qonun hujjatlari')
         db_table = 'legislative_document'
+
+
+class About(models.Model):
+    title = models.CharField(max_length=255, verbose_name=_("To'liq nomi [title]"))
+    content = models.TextField(verbose_name=_('Ma\'lumot'))
+
+    image = models.ImageField(upload_to='images/', verbose_name=_('Rasm'), null=True, blank=True)
+
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Yaratilgan vaqti'))
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Tahrirlangan vaqti'))
+
+    state = models.ForeignKey(State, on_delete=models.SET_NULL, verbose_name=_('Holati'), null=True)
+
+    def __str__(self):
+        return self.title
+
+    def get_image_url(self):
+        return settings.HOST + self.image.url
+
+    def save(self, *args, **kwargs):
+        self.updated_at = timezone.now()
+        super(About, self).save(*args, **kwargs)
+        return self
+
+    class Meta:
+        verbose_name = _('Tizim haqida')
+        verbose_name_plural = _('Tizim haqida')
+        db_table = 'about'

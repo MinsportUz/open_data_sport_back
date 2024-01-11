@@ -121,3 +121,13 @@ class GetDataFilterByviewsView(viewsets.ModelViewSet):
         instance.increase_views()
         serializer = self.get_serializer(instance)
         return Response(serializer.data)
+
+
+class AboutView(viewsets.ModelViewSet):
+    """The class is responsible for About CRUD functionality"""
+    queryset = models.About.objects.filter(state=State.objects.first())
+    serializer_class = serializers.AboutSerializers
+    http_method_names = ['get', ]
+
+    def retrieve(self, request, *args, **kwargs):
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)

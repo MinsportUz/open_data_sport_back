@@ -1,7 +1,7 @@
 from django.contrib import admin
 from modeltranslation.admin import TranslationAdmin
 
-from .models import SportData, LegislativeDocument
+from .models import SportData, LegislativeDocument, About
 
 admin.site.site_header = 'Data Sport Admin panel'
 admin.site.site_title = 'Data Sport  Admin panel'
@@ -48,5 +48,20 @@ class LegislativeDocumentAdmin(TranslationAdmin):
     )
 
 
+class AboutAdmin(TranslationAdmin):
+    list_filter = ('title', 'created_at')
+    search_fields = ('title', 'content')
+    list_per_page = 5
+
+    fieldsets = (
+        ('O\'zbekcha', {'fields': ('title_uz', 'content_uz',)}),
+        ('Inglizcha', {'fields': ('title_en', 'content_en',)}),
+        ('Ruscha', {'fields': ('title_ru', 'content_ru',)}),
+        ('Rasm', {'fields': ('image',)}),
+        ('Holati', {'fields': ('state',)}),
+    )
+
+
 admin.site.register(SportData, SportDataAdmin)
 admin.site.register(LegislativeDocument, LegislativeDocumentAdmin)
+admin.site.register(About, AboutAdmin)
