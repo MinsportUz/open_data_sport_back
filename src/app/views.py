@@ -141,3 +141,13 @@ class FooterView(viewsets.ModelViewSet):
 
     def retrieve(self, request, *args, **kwargs):
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+
+class GetDataView(viewsets.ModelViewSet):
+    """The class is responsible for SportData Get only id functionality"""
+    queryset = models.SportData.objects.filter(state=State.objects.first())
+    serializer_class = serializers.SportDataSerializers
+    http_method_names = ['get', ]
+
+    def list(self, request, *args, **kwargs):
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
