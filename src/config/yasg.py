@@ -9,7 +9,7 @@ schema_view = get_schema_view(
     openapi.Info(
         title="data.sport Uz Api",
         default_version='v1',
-        description="Data Sport Uz Api documentations",
+        description="data.sport Uz Api documentations",
         terms_of_service="https://www.google.com/policies/terms/",
         contact=openapi.Contact(email="haydarovakbar640@gmail.com"),
         license=openapi.License(name="BSD License"),
