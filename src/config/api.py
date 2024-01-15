@@ -7,9 +7,6 @@ from utils import views as utils_views
 
 api = routers.DefaultRouter()
 
-# utils urls
-# api.register(r'state', utils_views.StateView, basename='state')
-
 # sport urls
 api.register(r'sport_type', sport_views.SportTypeView, basename='sport_type')
 
