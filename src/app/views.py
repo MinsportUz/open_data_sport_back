@@ -18,7 +18,7 @@ from sport.models import SportType
 
 
 def lockout_view(request):
-    # You can add any context data here to pass to the template
+    # add any context data here to pass to the template
     context = {
         'message': settings.HOST,
     }
