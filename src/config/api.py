@@ -3,7 +3,6 @@ from rest_framework import routers
 
 from app import views as app_views
 from sport import views as sport_views
-from utils import views as utils_views
 
 api = routers.DefaultRouter()
 

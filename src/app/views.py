@@ -94,6 +94,9 @@ class SearchDataView(viewsets.ModelViewSet):
     def list(self, request, *args, **kwargs):
         return super(SearchDataView, self).list(request, *args, **kwargs)
 
+    def retrieve(self, request, *args, **kwargs):
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
 
 class GetDataFilterByviewsView(viewsets.ModelViewSet):
     """The class is responsible for SportData CRUD functionality"""
