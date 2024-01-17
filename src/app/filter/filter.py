@@ -1,10 +1,34 @@
 from rest_framework import filters
 from django.utils.translation import get_language
 
+from drf_yasg import openapi
+
 from django.db.models import Q
 
 
 class SportDataFilterBackend(filters.BaseFilterBackend):
+
+    def get_schema_fields(self, view):
+        return [
+            coreapi.Field(
+                name='sport_type',
+                required=False,
+                location='query',
+                schema=coreschema.Integer(
+                    title='sport_type',
+                    description='sport_type',
+                ),
+            ),
+            coreapi.Field(
+                name='created_at',
+                required=False,
+                location='query',
+                schema=coreschema.Integer(
+                    title='created_at',
+                    description='created_at',
+                ),
+            ),
+        ]
     def filter_queryset(self, request, queryset, view):
         search = request.query_params.get('search', None)
         language = get_language()
