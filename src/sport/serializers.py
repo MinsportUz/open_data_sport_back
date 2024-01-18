@@ -13,6 +13,7 @@ class SportTypeSerializers(serializers.ModelSerializer):
         fields = ('id', 'title', 'attr', 'icon')
 
     def to_representation(self, instance):
+        """Add count and file_views to representation"""
         representation = super().to_representation(instance)
         representation['count'] = SportData.objects.filter(sport_type=instance, state=State.objects.first()).count()
         representation['file_views'] = SportData.objects.filter(sport_type=instance, state=State.objects.first()).aggregate(
