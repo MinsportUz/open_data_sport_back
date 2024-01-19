@@ -3,6 +3,8 @@ from django.utils.translation import gettext_lazy as _
 from django.utils.translation import get_language
 from django.utils import timezone
 from django.conf import settings
+from django.db.models import F
+import uuid
 
 from utils.models import State
 from sport.models import SportType
@@ -37,6 +39,8 @@ class SportData(models.Model):
     state = models.ForeignKey(State, on_delete=models.SET_NULL, verbose_name=_('Holati'), null=True)
     sport_type = models.ForeignKey(SportType, on_delete=models.SET_NULL, verbose_name=_('Sport turi'), null=True)
 
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, verbose_name=_('UUID'), null=True, blank=True)
+
     def __str__(self):
         return self.title
 
@@ -63,7 +67,7 @@ class SportData(models.Model):
         return dict(Languages)[self.language]
 
     def increase_views(self):
-        self.views += 1
+        self.views = F('views') + 1
         self.save()
         return self
 

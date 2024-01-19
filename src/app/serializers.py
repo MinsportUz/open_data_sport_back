@@ -8,7 +8,7 @@ class SportDataSerializers(serializers.ModelSerializer):
     class Meta:
         model = SportData
         fields = (
-            'id', 'title', 'attr', 'url', 'file', 'views', 'published_at', 'sport_type', 'author', 'publisher',
+            'id', 'title', 'attr', 'url', 'file', 'views', 'published_at', 'sport_type', 'author', 'publisher', 'uuid',
             'image', 'language')
 
     def to_representation(self, instance):
