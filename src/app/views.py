@@ -159,4 +159,3 @@ class GetDataView(viewsets.ModelViewSet):
     # def retrieve(self, request, *args, **kwargs):
     #     uuid = kwargs.get('uuid')
     #     instance = self.get_object()
-    #
