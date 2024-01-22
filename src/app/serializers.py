@@ -40,7 +40,7 @@ class YoutubeViewsSerializers(serializers.ModelSerializer):
 class AboutSerializers(serializers.ModelSerializer):
     class Meta:
         model = About
-        fields = ('id', 'title', 'content', 'image', 'state')
+        fields = ('id', 'title', 'content', 'image')
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
