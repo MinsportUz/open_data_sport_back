@@ -26,6 +26,7 @@ class SportDataAdmin(TranslationAdmin):
         ('Holati', {'fields': ('state',)}),
         ('Sport turi', {'fields': ('sport_type',)}),
         ('Tili', {'fields': ('language',)}),
+        # ('UUID', {'fields': ('uuid',)}),
     )
     _orig_was_required = {
         'title_uz': True,
