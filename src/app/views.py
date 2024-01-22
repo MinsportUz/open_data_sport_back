@@ -151,6 +151,12 @@ class GetDataView(viewsets.ModelViewSet):
     queryset = models.SportData.objects.filter(state=State.objects.first())
     serializer_class = serializers.SportDataSerializers
     http_method_names = ['get', ]
+    lookup_field = 'uuid'
 
     def list(self, request, *args, **kwargs):
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+    # def retrieve(self, request, *args, **kwargs):
+    #     uuid = kwargs.get('uuid')
+    #     instance = self.get_object()
+    #

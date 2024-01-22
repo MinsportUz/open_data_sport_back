@@ -39,7 +39,7 @@ class SportData(models.Model):
     state = models.ForeignKey(State, on_delete=models.SET_NULL, verbose_name=_('Holati'), null=True)
     sport_type = models.ForeignKey(SportType, on_delete=models.SET_NULL, verbose_name=_('Sport turi'), null=True)
 
-    uuid = models.UUIDField(default=uuid.uuid4, editable=False, verbose_name=_('UUID'), null=True, blank=True)
+    uuid = models.UUIDField(default=uuid.uuid4, unique=True, verbose_name=_('UUID'), null=True, blank=True)
 
     def __str__(self):
         return self.title
