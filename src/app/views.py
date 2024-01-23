@@ -33,6 +33,7 @@ class SportDataView(viewsets.ModelViewSet):
     pagination_class = TenPagination
     filter_backends = (DjangoFilterBackend,)
     filterset_fields = ('sport_type',)
+    lookup_field = 'uuid'
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -106,6 +107,7 @@ class GetDataFilterByviewsView(viewsets.ModelViewSet):
     pagination_class = TenPagination
     filter_backends = (DjangoFilterBackend,)
     filterset_fields = ('sport_type',)
+    lookup_field = 'uuid'
 
     def list(self, request, *args, **kwargs):
         sort = request.query_params.get('sort', None)
