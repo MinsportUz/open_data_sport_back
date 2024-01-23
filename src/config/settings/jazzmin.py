@@ -1,11 +1,8 @@
 JAZZMIN_SETTINGS = {
-    "site_title": "Sport data Admin",
-    "site_header": "Sport data Admin",
-    # "site_logo": "static/images/logo.jpg",
-    "welcome_sign": "Welcome to Sport data Admin",
+    "site_title": "Darslik Sport Admin",
+    "site_header": "Darslik Sport Admin",
+    "welcome_sign": "Welcome to Darslik Sport Admin",
     "search_model": "auth.User",
-    # "user_avatar": "static\imageslogo.jpg",
-    # "user_avatar_diameter": 60,
     "user_menu": [
         {"name": "Profile", "url": "admin:auth_user_change", "icon": "user", "permissions": ["auth.change_user"]},
         {"name": "API Docs", "url": "schema-swagger-ui", "icon": "book", "permissions": ["auth.change_user"]},
