@@ -20,7 +20,7 @@ class SportData(models.Model):
     title = models.CharField(max_length=255, verbose_name=_("To'liq nomi [title]"))
     attr = models.CharField(max_length=255, verbose_name=_('Qisqa nomi [attr]'))
 
-    url = models.CharField(max_length=255, verbose_name=_('Youtube url'))
+    url = models.CharField(max_length=255, verbose_name=_('Youtube url'), null=True, blank=True)
     file = models.FileField(upload_to='files/', verbose_name=_('file'))
 
     views = models.IntegerField(default=0, verbose_name=_('Ko\'rishlar soni'))
