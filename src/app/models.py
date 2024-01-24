@@ -54,10 +54,10 @@ class SportData(models.Model):
         super(SportData, self).save(*args, **kwargs)
         return self
 
-    def get_file_url(self):
+    def file_url(self):
         return settings.HOST + self.file.url
 
-    def get_image_url(self):
+    def image_url(self):
         return settings.HOST + self.image.url
 
     def get_file_name(self):
@@ -67,7 +67,8 @@ class SportData(models.Model):
         return dict(Languages)[self.language]
 
     def increase_views(self):
-        self.views = F('views') + 1
+        # self.views = F('views') + 1
+        self.views += 1
         self.save()
         return self
 
