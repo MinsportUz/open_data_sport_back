@@ -13,7 +13,7 @@ JAZZMIN_SETTINGS = {
         {"name": "Log Out", "url": "admin:logout", "icon": "sign-out-alt"},
     ],
     "user_menu_links": [
-        {"name": "Sport data Admin", "url": "https://data.sport.uz", "icon": "link"},
+        {"name": "Darslik Sport Admin", "url": "https://darslik.sport.uz", "icon": "link"},
 
     ],
     "icons": {
