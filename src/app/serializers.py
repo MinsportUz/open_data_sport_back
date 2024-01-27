@@ -12,6 +12,7 @@ class SportDataSerializers(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
+        representation['sport_type_title'] = instance.sport_type.title
         representation['file'] = instance.file_url()
         representation['image'] = instance.image_url()
         representation['language'] = instance.get_language_display()
